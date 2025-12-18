@@ -152,15 +152,15 @@ const App: React.FC = () => {
             I'm always open to advice from seniors, internship opportunities, or just connecting with fellow learners.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#" className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 rounded-lg font-medium hover:bg-slate-100 transition-colors">
+            <a href="dev.yashchaurasia1@gmail.com" className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 rounded-lg font-medium hover:bg-slate-100 transition-colors">
               <Mail className="w-5 h-5" />
               <span>Email Me</span>
             </a>
-            <a href="#" className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-lg font-medium hover:bg-slate-700 transition-colors">
+            <a href="linkedin.com/in/yash-chaurasia-a503a2368" className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-lg font-medium hover:bg-slate-700 transition-colors">
               <Linkedin className="w-5 h-5" />
               <span>LinkedIn</span>
             </a>
-            <a href="#" className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-lg font-medium hover:bg-slate-700 transition-colors">
+            <a href="https://github.com/Yash-Raw" className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-lg font-medium hover:bg-slate-700 transition-colors">
               <Github className="w-5 h-5" />
               <span>GitHub</span>
             </a>
