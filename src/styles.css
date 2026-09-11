@@ -1,0 +1,484 @@
+/* ---------------------------------------------------------------------------
+   Tokens
+   A warm, near-white ground with a single muted moss accent. The palette is
+   deliberately narrow: the page has one idea, and colour is not it.
+--------------------------------------------------------------------------- */
+:root {
+  --ground: #fafaf9;
+  --surface: #ffffff;
+  --ink: #1a1917;
+  --ink-soft: #6b6965;
+  --ink-faint: #a09d9a;
+  --line: #ecebe7;
+  --accent: #5b7355;
+  --accent-tint: #eef2eb;
+
+  --sans: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --measure: 46rem;
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+  --section-gap: clamp(4.5rem, 11vw, 8rem);
+
+  /* Label column of the calibration grid, shared by legend and rows so the
+     ticks stay aligned with the dots. */
+  --cal-label: 13.5rem;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Layout
+--------------------------------------------------------------------------- */
+.shell {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block-start: var(--section-gap);
+}
+
+/* A mono eyebrow is the only thing that announces a section. */
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 2rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Header
+--------------------------------------------------------------------------- */
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.75rem;
+}
+
+.header-mark {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.header-nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.18s var(--ease);
+}
+
+.header-nav a:hover {
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Hero
+--------------------------------------------------------------------------- */
+.hero {
+  padding-block: clamp(3.5rem, 10vw, 6.5rem) 0;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+}
+
+.hero-name {
+  margin: 0;
+  font-size: clamp(2.75rem, 9vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.hero-lead {
+  margin: 1.75rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.0625rem, 2.2vw, 1.1875rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* ---------------------------------------------------------------------------
+   Work — a list, not a grid of cards
+--------------------------------------------------------------------------- */
+.work-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block-start: 1px solid var(--line);
+}
+
+.work-row {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem 1.5rem;
+  padding-block: 1.4rem;
+  border-block-end: 1px solid var(--line);
+}
+
+.work-name {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -0.012em;
+}
+
+.work-blurb {
+  color: var(--ink-soft);
+  font-size: 0.9688rem;
+}
+
+.work-links {
+  display: flex;
+  gap: 1.125rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.18s var(--ease);
+}
+
+.work-link:hover {
+  color: var(--accent);
+}
+
+.work-link svg {
+  transition: transform 0.18s var(--ease);
+}
+
+.work-link:hover svg {
+  transform: translate(1px, -1px);
+}
+
+/* No link is a statement, not an omission. */
+.work-status {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+}
+
+/* ---------------------------------------------------------------------------
+   Calibration — the one place the page raises its voice
+--------------------------------------------------------------------------- */
+.cal {
+  background: var(--surface);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.04), 0 8px 28px rgba(26, 25, 23, 0.05);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.cal-note {
+  margin: 0 0 2rem;
+  color: var(--ink-soft);
+  font-size: 0.9688rem;
+  max-width: 30rem;
+  text-wrap: pretty;
+}
+
+.cal-legend {
+  display: grid;
+  grid-template-columns: var(--cal-label) minmax(0, 1fr);
+  gap: 1rem;
+  margin-block-end: 0.875rem;
+}
+
+.cal-legend-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-family: var(--mono);
+  font-size: 0.6563rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.cal-legend-track span {
+  text-align: center;
+}
+
+.cal-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cal-row {
+  display: grid;
+  grid-template-columns: var(--cal-label) minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding-block: 0.5rem;
+}
+
+.cal-name {
+  font-size: 0.9375rem;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.cal-track {
+  position: relative;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Hairline rail plus four ticks: an axis, not a progress bar. */
+.cal-rail {
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  background: var(--line);
+}
+
+.cal-ticks {
+  position: absolute;
+  inset-inline: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cal-ticks span {
+  justify-self: center;
+  width: 1px;
+  height: 7px;
+  background: var(--line);
+}
+
+.cal-dot {
+  position: absolute;
+  /* Centre of the nth of four slots. */
+  left: calc((var(--pos) - 0.5) * 25%);
+  width: 0.5625rem;
+  height: 0.5625rem;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 4px var(--accent-tint);
+}
+
+/* The dots travel to their positions once, when the block is first seen. */
+.cal[data-animate='pending'] .cal-dot {
+  left: 12.5%;
+  opacity: 0;
+}
+
+.cal[data-animate='running'] .cal-dot {
+  transition:
+    left 0.75s var(--ease),
+    opacity 0.4s var(--ease);
+  transition-delay: calc(var(--i) * 55ms);
+}
+
+/* ---------------------------------------------------------------------------
+   Contact
+--------------------------------------------------------------------------- */
+.contact-line {
+  margin: 0 0 2rem;
+  font-size: clamp(1.25rem, 3.4vw, 1.625rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.3;
+  max-width: 28rem;
+  text-wrap: balance;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: 100px;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.05), 0 4px 14px rgba(26, 25, 23, 0.045);
+  text-decoration: none;
+  font-size: 0.9063rem;
+  transition:
+    transform 0.18s var(--ease),
+    box-shadow 0.18s var(--ease),
+    color 0.18s var(--ease);
+}
+
+.contact-link:hover {
+  transform: translateY(-2px);
+  color: var(--accent);
+  box-shadow: 0 2px 4px rgba(26, 25, 23, 0.06), 0 10px 24px rgba(26, 25, 23, 0.07);
+}
+
+.footer {
+  margin-block-start: var(--section-gap);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+}
+
+/* The rule sits on the inner box so it lines up with the work list above. */
+.footer-inner {
+  padding-block: 2.25rem;
+  border-block-start: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------------------
+   Entrance
+--------------------------------------------------------------------------- */
+.rise {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise 0.7s var(--ease) forwards;
+  animation-delay: calc(var(--d, 0) * 70ms);
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Narrow screens
+--------------------------------------------------------------------------- */
+@media (max-width: 40rem) {
+  .work-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.35rem 1rem;
+    padding-block: 1.25rem;
+  }
+
+  .work-blurb {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 35rem) {
+  :root {
+    --cal-label: 100%;
+  }
+
+  .cal-legend,
+  .cal-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
+  }
+
+  /* The legend belongs to the first row's track once things stack. */
+  .cal-legend {
+    margin-block-end: 0.25rem;
+  }
+
+  .cal-row {
+    padding-block: 0.35rem 0.75rem;
+  }
+
+  .cal-legend-track {
+    font-size: 0.625rem;
+    letter-spacing: 0.03em;
+  }
+
+  .header-nav {
+    gap: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .rise {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scale labels: full wording on wide screens, short forms once it gets tight
+--------------------------------------------------------------------------- */
+.lv-short {
+  display: none;
+}
+
+@media (max-width: 35rem) {
+  .lv-full {
+    display: none;
+  }
+
+  .lv-short {
+    display: inline;
+  }
+}
